@@ -1,0 +1,15 @@
+N = 2500;
+p = 0.3;
+seq = rand(1,N) < p;
+prob0 = sum(seq==0)/N;
+prob1 = sum(seq==1)/N;
+dict = huffmandict([0 1],[prob0 prob1]);
+enc = huffmanenco(seq,dict);
+ratio = N/length(enc);
+figure;
+subplot(2,1,1);
+stem(seq(1:50),'filled');
+title('First 50 Bits of Bernoulli Sequence');
+subplot(2,1,2);
+bar([N length(enc)]);
+title(['Compression Ratio: ' num2str(ratio)]);

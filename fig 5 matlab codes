@@ -1,0 +1,16 @@
+sizes = [4 6 8 10];
+density = [];
+for i = 1:length(sizes)
+    n = sizes(i);
+    A = rand(n) < 0.3;
+    A = triu(A,1);
+    A = A + A';
+    edges = sum(A(:))/2;
+    max_edges = n*(n-1)/2;
+    density(i) = edges/max_edges;
+end
+figure;
+bar(sizes,density);
+xlabel('Graph Size (nodes)');
+ylabel('Edge Density');
+title('Graph Density vs Size');

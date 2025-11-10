@@ -1,0 +1,16 @@
+pvals = 0.1:0.1:0.9;
+entropy = [];
+for i = 1:length(pvals)
+    p = pvals(i);
+    if p > 0 && p < 1
+        H = -p*log2(p) - (1-p)*log2(1-p);
+    else
+        H = 0;
+    end
+    entropy(i) = H;
+end
+figure;
+plot(pvals,entropy,'-o');
+xlabel('Probability p');
+ylabel('Entropy (bits)');
+title('Entropy vs Probability');
